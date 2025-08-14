@@ -15,7 +15,7 @@ class LoginPage:
 
         # Локаторы для элементов в модальном окне
         self.phone_input = (By.ID, "tid-input")
-        self.get_code_button = (By.XPATH, "//div[text()='Получить код']")
+        self.get_code_button = (By.XPATH, "//div[text()=' Получить код ']")
 
     @allure.step("Ввести номер телефона: {phone_number}")
     def enter_phone_number(self, phone_number: str):

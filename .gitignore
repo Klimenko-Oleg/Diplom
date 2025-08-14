@@ -1,0 +1,12 @@
+.env
+__pycache__
+D:\DIPLOM\Diplom\__pycache__
+.pytest_cache
+.venv
+.vscode
+__pycache__
+allure-report
+allure-result
+__pycache__/__init__.cpython-313.pyc
+__pycache__/test_ui.cpython-313-pytest-8.4.1.pyc
+__pycache__

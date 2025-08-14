@@ -7,21 +7,32 @@ from config import BASE_URL
 
 
 class MainPage:
-    """
-    Page Object для главной страницы "Читай-город".
-    """
+    """Page Object для главной страницы "Читай-город"."""
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.driver.get(BASE_URL)
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 15)
 
-        # Локаторы, предоставленные пользователем
-        self.search_input = (By.ID, "search-input")
-        self.search_button = (By.CLASS_NAME, "search-button")
+        # Локаторы:
+        self.search_input = (By.NAME, "search")
+        xpath_start = '//*[@id="__nuxt"]/div/header/div/div[1]/div/div'
+        xpath_end = '/div[1]/form/button'
+        self.search_button = (By.XPATH, xpath_start + xpath_end)
         self.login_button = (By.XPATH, "//span[text()='Войти']")
+        self.cart_icon = (
+            By.XPATH,
+            "//span[@class='header-controls__text' "
+            "and contains(text(), 'Корзина')]")
 
     @allure.step("Ввести поисковый запрос: {query}")
     def search(self, query):
+        # Ждем загрузки страницы
+        self.wait.until(
+            lambda driver: driver.execute_script(
+                'return document.readyState=="complete"')
+        )
+
         search_input = self.wait.until(
             EC.presence_of_element_located(self.search_input)
         )
@@ -48,3 +59,10 @@ class MainPage:
         except Exception as e:
             print(f"Ошибка при проверке: {e}")
             return False
+
+    @allure.step("Открыть корзину")
+    def open_cart(self):
+        cart_icon = self.wait.until(
+            EC.element_to_be_clickable(self.cart_icon)
+        )
+        cart_icon.click()
