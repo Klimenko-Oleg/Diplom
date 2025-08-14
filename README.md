@@ -10,8 +10,8 @@
 ## Описание
 Тестирование основных функций сайта Читай-город.
 
-Финальная работа по ручному тестированию: <https://purim.yonote.ru/share/c4d77082-d8ea-4bce-8053-0feb574abd62>
-Автотесты для сайта Читайгорода: <https://github.com/nanahaya770/diplom_chitaigorod>
+Финальная работа по ручному тестированию: https://oklimenko.yonote.ru/doc/test-plan-qK9tkGbnIP
+Автотесты для сайта Читайгорода: https://github.com/Klimenko-Oleg/Diplom
 
 Сайт: [https://www.chitai-gorod.ru/](https://www.chitai-gorod.ru/)
 
