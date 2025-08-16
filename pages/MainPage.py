@@ -16,9 +16,7 @@ class MainPage:
 
         # Локаторы:
         self.search_input = (By.NAME, "search")
-        xpath_start = '//*[@id="__nuxt"]/div/header/div/div[1]/div/div'
-        xpath_end = '/div[1]/form/button'
-        self.search_button = (By.XPATH, xpath_start + xpath_end)
+        self.search_button = (By.CSS_SELECTOR, "button[type='submit']")
         self.login_button = (By.XPATH, "//span[text()='Войти']")
         self.cart_icon = (
             By.XPATH,
@@ -66,3 +64,15 @@ class MainPage:
             EC.element_to_be_clickable(self.cart_icon)
         )
         cart_icon.click()
+
+    @allure.step("Проверить основные элементы главной страницы")
+    def check_main_page_elements(self):
+        """Проверяет наличие основных элементов на главной странице."""
+        with allure.step("Проверка наличия поля поиска"):
+            self.wait.until(EC.presence_of_element_located(self.search_input))
+        with allure.step("Проверка наличия кнопки поиска"):
+            self.wait.until(EC.element_to_be_clickable(self.search_button))
+        with allure.step("Проверка наличия кнопки входа"):
+            self.wait.until(EC.element_to_be_clickable(self.login_button))
+        with allure.step("Проверка наличия иконки корзины"):
+            self.wait.until(EC.element_to_be_clickable(self.cart_icon))
